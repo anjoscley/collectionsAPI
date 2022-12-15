@@ -1,2 +1,7 @@
 .metadata/
 RemoteSystemsTempFiles/
+collectionsAPI/bin/
+collectionsAPI/bin/*
+collectionsAPI/bin/collectionsAPI/
+*.class
+*/*.class

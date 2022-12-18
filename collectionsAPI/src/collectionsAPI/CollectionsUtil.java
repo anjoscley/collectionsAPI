@@ -2,46 +2,140 @@ package collectionsAPI;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class CollectionsUtil {
+public class CollectionsUtil<T> {
 	
-	public static List<?> sortByMethodName(List<?> list,final String methodName) {
-		Collections.sort(list, new Comparator() {			
-			@Override public int compare(Object objOne, Object objTwo) {
+	public static final String METHOD_NAME_COMPARE_TO = "compareTo";
+	
+	CollectionsUtil(){
+		
+	}
+
+	public List<T> sortByMethodName(List<T> list,final String methodName) {
+		Collections.sort(list, new Comparator<T>() {			
+			@Override public int compare(T objOne, T objTwo) {
 				try {
 					Method methodComparable = objOne.getClass().getMethod(methodName, null);
 					
 					Object returnOne = methodComparable.invoke(objOne, null);
 					Object returnTwo = methodComparable.invoke(objTwo, null);
+							
+					Method methodCompareTo = returnOne.getClass().getMethod(METHOD_NAME_COMPARE_TO, new Class[]{returnTwo.getClass()});
+							
+					return (int) methodCompareTo.invoke(returnOne, returnTwo);
 					
-					if(returnOne instanceof String && returnTwo instanceof String) {
-						String retorno1Castado = (String) returnOne;
-						String retorno2Castado = (String) returnTwo;
-						
-						retorno1Castado.compareTo(retorno2Castado);
-					}
 				} catch (NoSuchMethodException | SecurityException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				return 0;
 			}
 		});
+		
 	 return list;	
 	 
 	}
+	
+	public List<T> sortReverseByMethodName(List<T> list,final String methodName) {
+		Collections.sort(list, new Comparator<T>() {			
+			@Override public int compare(T objOne, T objTwo) {
+				try {
+					Method methodComparable = objOne.getClass().getMethod(methodName, null);
+					
+					Object returnOne = methodComparable.invoke(objOne, null);
+					Object returnTwo = methodComparable.invoke(objTwo, null);
+							
+					Method methodCompareTo = returnOne.getClass().getMethod(METHOD_NAME_COMPARE_TO, new Class[]{returnTwo.getClass()});
+							
+					return (int) methodCompareTo.invoke(returnOne, returnTwo);
+					
+				} catch (NoSuchMethodException | SecurityException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+				return 0;
+			}
+		});
+		
+	 Collections.reverse(list);
+	 
+	 return list;
+	 
+	}
+	
+	public T maxByMethodName(List<T> list,final String methodName) {
+		T t = Collections.max(list, new Comparator<T>() {			
+			@Override public int compare(T objOne, T objTwo) {
+				try {
+					Method methodComparable = objOne.getClass().getMethod(methodName, null);
+					
+					Object returnOne = methodComparable.invoke(objOne, null);
+					Object returnTwo = methodComparable.invoke(objTwo, null);
+							
+					Method methodCompareTo = returnOne.getClass().getMethod(METHOD_NAME_COMPARE_TO, new Class[]{returnTwo.getClass()});
+							
+					return (int) methodCompareTo.invoke(returnOne, returnTwo);
+					
+				} catch (NoSuchMethodException | SecurityException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+				return 0;
+			}
+		});
+		
+	 return t;	
+	 
+	}
+	
+	public T minByMethodName(List<T> list,final String methodName) {
+		T t = Collections.min(list, new Comparator<T>() {			
+			@Override public int compare(T objOne, T objTwo) {
+				try {
+					Method methodComparable = objOne.getClass().getMethod(methodName, null);
+					
+					Object returnOne = methodComparable.invoke(objOne, null);
+					Object returnTwo = methodComparable.invoke(objTwo, null);
+							
+					Method methodCompareTo = returnOne.getClass().getMethod(METHOD_NAME_COMPARE_TO, new Class[]{returnTwo.getClass()});
+							
+					return (int) methodCompareTo.invoke(returnOne, returnTwo);
+					
+				} catch (NoSuchMethodException | SecurityException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+				return 0;
+			}
+		});
+		
+	 return t;	
+	 
+	}
+	
+	
 
 }

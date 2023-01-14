@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class CollectionsUtil<T> {
+public class CollectionsUtil {
 	
 	public static final String METHOD_NAME_COMPARE_TO = "compareTo";
 	
@@ -14,7 +14,7 @@ public class CollectionsUtil<T> {
 		
 	}
 
-	public List<T> sortByMethodName(List<T> list,final String methodName) {
+	public static <T> List<T> sortByMethodName(List<T> list,final String methodName) {
 		Collections.sort(list, new Comparator<T>() {			
 			@Override public int compare(T objOne, T objTwo) {
 				try {
@@ -44,7 +44,7 @@ public class CollectionsUtil<T> {
 	 
 	}
 	
-	public List<T> sortReverseByMethodName(List<T> list,final String methodName) {
+	public static <T> List<T> sortReverseByMethodName(List<T> list,final String methodName) {
 		Collections.sort(list, new Comparator<T>() {			
 			@Override public int compare(T objOne, T objTwo) {
 				try {
@@ -76,7 +76,7 @@ public class CollectionsUtil<T> {
 	 
 	}
 	
-	public T maxByMethodName(List<T> list,final String methodName) {
+	public static <T> T maxByMethodName(List<T> list,final String methodName) {
 		T t = Collections.max(list, new Comparator<T>() {			
 			@Override public int compare(T objOne, T objTwo) {
 				try {
@@ -106,7 +106,7 @@ public class CollectionsUtil<T> {
 	 
 	}
 	
-	public T minByMethodName(List<T> list,final String methodName) {
+	public static <T> T minByMethodName(List<T> list,final String methodName) {
 		T t = Collections.min(list, new Comparator<T>() {			
 			@Override public int compare(T objOne, T objTwo) {
 				try {
